@@ -53,13 +53,13 @@ jobs:
           # Provide the name of a resource group, only required for resource Group deployments.
           resourceGroupName: "rg-azure-arc" # optional
           # Specify the path or URL to the Azure Resource Manager template.
-          template: ./azure_jumpstart_arcbox/bicep/main.bicep
+          template: ../azure_jumpstart_arcbox/bicep/main.bicep
           # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
           deploymentMode: Incremental # optional
           # Specifies the name of the resource group deployment to create.
           deploymentName: azure_arc # optional
           # Supply deployment parameter values.
-          parameters: ./azure_jumpstart_arcbox/bicep/main.bicepparam # optional
+          parameters: ../azure_jumpstart_arcbox/bicep/main.bicepparam # optional
           # # Specify whether to fail the action if some data is written to stderr stream of az cli. Valid values are: true, false
           # failOnStdErr: # optional, default is true
           # Specify any additional arguments for the deployment.
