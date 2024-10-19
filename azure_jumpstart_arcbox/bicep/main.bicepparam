@@ -1,14 +1,14 @@
 using 'main.bicep'
 
-param sshRSAPublicKey = '<your RSA public key>'
+// param sshRSAPublicKey = '<your RSA public key>'
 
-param tenantId = '<your tenant id>'
+param tenantId = 'ecf522e2-a126-4ee8-a152-ac1ad1a3d137'
 
 param windowsAdminUsername = 'arcdemo'
 
-param windowsAdminPassword = '<your windows admin password>'
+// param windowsAdminPassword = '<your windows admin password>'
 
-param logAnalyticsWorkspaceName = '<your unique Log Analytics workspace name>'
+param logAnalyticsWorkspaceName = 'law-arcbox-tv22'
 
 param flavor = 'ITPro'
 
@@ -16,4 +16,12 @@ param deployBastion = false
 
 param vmAutologon = true
 
-param resourceTags = {} // Add tags as needed
+param namingPrefix = 'contoso'
+
+param resourceTags = {
+  environment: 'sandbox'
+  solution: 'jumpstart_arcbox'
+  costcenter: 'it'
+} // Add tags as needed
+
+param autoShutdownEmailRecipient = 'tamas.veiland@microsoft.com'

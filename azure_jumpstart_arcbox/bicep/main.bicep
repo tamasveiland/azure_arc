@@ -40,7 +40,7 @@ param flavor string = 'ITPro'
 param sqlServerEdition string = 'Developer'
 
 @description('Target GitHub account')
-param githubAccount string = 'microsoft'
+param githubAccount string = 'tamasveiland'
 
 @description('Target GitHub branch')
 param githubBranch string = 'main'
@@ -57,7 +57,7 @@ param deployBastion bool = false
 param bastionSku string = 'Basic'
 
 @description('User github account where they have forked https://github.com/microsoft/azure-arc-jumpstart-apps')
-param githubUser string = 'microsoft'
+param githubUser string = 'tamasveiland'
 
 @description('Active directory domain services domain name')
 param addsDomainName string = 'jumpstart.local'
