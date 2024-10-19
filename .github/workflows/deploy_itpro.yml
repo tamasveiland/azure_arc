@@ -36,6 +36,6 @@ jobs:
           # Specify the script here
           inlineScript: |
             az group create --name "rg-azure-arc" --location "northeurope"
-            az deployment group create -g "rg-azure-arc" -f "main.bicep" -p "main.bicepparam"
+            az deployment group create -g "rg-azure-arc" -f "azure_jumpstart_arcbox/bicep/main.bicep" -p "azure_jumpstart_arcbox/bicep/main.bicepparam"
           
           
