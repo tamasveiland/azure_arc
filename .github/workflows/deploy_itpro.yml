@@ -39,6 +39,15 @@ jobs:
             ls
             #az deployment group create -g "rg-azure-arc" -f "./azure_jumpstart_arcbox/bicep/main.bicep" -p "./azure_jumpstart_arcbox/bicep/main.bicepparam"
 
+      - name: List current working directory
+        uses: Azure/cli@v2.1.0
+        with:
+          azcliversion: 2.63.0
+          # Specify the script here
+          inlineScript: |
+            ls
+            dir
+
       - name: Deploy Azure Arc Jumpstart via bicep (ITPro)
         uses: Azure/arm-deploy@v2
         with:
