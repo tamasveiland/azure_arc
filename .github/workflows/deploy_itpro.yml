@@ -18,9 +18,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./azure_jumpstart_arcbox/bicep/
+    # defaults:
+    #   run:
+    #     working-directory: ./azure_jumpstart_arcbox/bicep/
     steps:
       - name: Login to Azure
         uses: azure/login@v1
