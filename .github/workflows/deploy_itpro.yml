@@ -32,6 +32,7 @@ jobs:
       - name: Create target resource group
         uses: Azure/cli@v2.1.0
         with:
+          azcliversion: 2.63.0
           # Specify the script here
           inlineScript: |
             az group create --name "rg-azure-arc" --location "northeurope"
