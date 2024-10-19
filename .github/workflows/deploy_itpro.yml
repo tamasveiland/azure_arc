@@ -45,8 +45,8 @@ jobs:
           azcliversion: 2.63.0
           # Specify the script here
           inlineScript: |
-            ls
-            dir
+            pwd;
+            ls -l
 
       - name: Deploy Azure Arc Jumpstart via bicep (ITPro)
         uses: Azure/arm-deploy@v2
