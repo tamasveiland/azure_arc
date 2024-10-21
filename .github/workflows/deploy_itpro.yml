@@ -71,7 +71,7 @@ jobs:
           # Specifies the name of the resource group deployment to create.
           deploymentName: azure_arc # optional
           # Supply deployment parameter values.
-          parameters: ./azure_jumpstart_arcbox/bicep/main.bicepparam windowsAdminPassword=${{ secrets.Windows_Admin_Password }} # optional
+          parameters: windowsAdminPassword=${{ secrets.Windows_Admin_Password }} ./azure_jumpstart_arcbox/bicep/main.bicepparam
           # # Specify whether to fail the action if some data is written to stderr stream of az cli. Valid values are: true, false
           # failOnStdErr: # optional, default is true
           # Specify any additional arguments for the deployment.
