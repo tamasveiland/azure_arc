@@ -76,6 +76,6 @@ jobs:
           # failOnStdErr: # optional, default is true
           # Specify any additional arguments for the deployment.
           #additionalArguments: --parameters '{"windowsAdminPassword":"value"}'
-          # '--windowsAdminPassword=${{ secrets.Windows_Admin_Password }}' # optional
+          # '--windowsAdminPassword=${{ secrets.WINDOWS_ADMIN_PASSWORD }}' # optional
           
           
