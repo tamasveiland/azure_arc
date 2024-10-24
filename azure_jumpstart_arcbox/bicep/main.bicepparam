@@ -25,3 +25,5 @@ param resourceTags = {
 } // Add tags as needed
 
 param autoShutdownEmailRecipient = 'tamas.veiland@microsoft.com'
+
+param windowsAdminPassword = '__windowsAdminPassword__'
