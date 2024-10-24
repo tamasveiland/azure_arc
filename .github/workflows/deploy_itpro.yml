@@ -46,11 +46,12 @@ jobs:
         run: find main.bicepparam -type f -exec sed -i ''s/__windowsAdminPassword__/${{ secrets.WINDOWS_ADMIN_PASSWORD }}/g'' {} \;
         working-directory: azure_jumpstart_arcbox/bicep/
       - name: Bash - Show XML Contents
+        if: false
         run: cat main.bicepparam
         working-directory: azure_jumpstart_arcbox/bicep/
 
       - name: Deploy Azure Arc Jumpstart via bicep (ITPro)
-        if: false
+        if: true
         uses: Azure/arm-deploy@v2
         with:
           # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'tenant', 'managementgroup', 'subscription'
