@@ -43,7 +43,7 @@ jobs:
             #az deployment group create -g "rg-azure-arc" -f "./azure_jumpstart_arcbox/bicep/main.bicep" -p "./azure_jumpstart_arcbox/bicep/main.bicepparam"
 
       - name: Find and Replace windowsAdminPassword parameter for bicep template
-        run: find main.bicepparam -type f -exec sed -i ''s/__{windowsAdminPassword}__/${{ secrets.WINDOWS_ADMIN_PASSWORD }}/g'' {} \;
+        run: find main.bicepparam -type f -exec sed -i ''s/__windowsAdminPassword__/${{ secrets.WINDOWS_ADMIN_PASSWORD }}/g'' {} \;
         working-directory: azure_jumpstart_arcbox/bicep/
       - name: Bash - Show XML Contents
         run: cat main.bicepparam
