@@ -1,0 +1,81 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
+
+name: Deploy Azure Arc Jumpstart
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# https://learn.microsoft.com/azure/developer/github/connect-from-azure?tabs=azure-portal%2Clinux#set-up-azure-login-with-openid-connect-authentication
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # defaults:
+    #   run:
+    #     working-directory: ./azure_jumpstart_arcbox/bicep/
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4.2.1
+      
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Create target resource group
+        uses: Azure/cli@v2.1.0
+        with:
+          azcliversion: 2.63.0
+          # Specify the script here
+          inlineScript: |
+            az group create --name "rg-azure-arc" --location "northeurope"
+            ls
+            #az deployment group create -g "rg-azure-arc" -f "./azure_jumpstart_arcbox/bicep/main.bicep" -p "./azure_jumpstart_arcbox/bicep/main.bicepparam"
+
+      - name: List current working directory
+        uses: Azure/cli@v2.1.0
+        with:
+          azcliversion: 2.63.0
+          # Specify the script here
+          inlineScript: |
+            pwd;
+            ls -l
+
+      - name: Deploy Azure Arc Jumpstart via bicep (ITPro)
+        uses: Azure/arm-deploy@v2
+        with:
+          # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'tenant', 'managementgroup', 'subscription'
+          scope: resourcegroup
+          # # Override the Subscription Id set by Azure Login.
+          # subscriptionId: # optional
+          # # Specify the Id for the Management Group, only required for Management Group Deployments.
+          # managementGroupId: # optional
+          # # Provide the target region, only required for tenant, management Group or Subscription deployments.
+          # region: # optional
+          # Provide the name of a resource group, only required for resource Group deployments.
+          resourceGroupName: "rg-azure-arc" # optional
+          # Specify the path or URL to the Azure Resource Manager template.
+          template: ./azure_jumpstart_arcbox/bicep/main.bicep
+          # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
+          deploymentMode: Incremental # optional
+          # Specifies the name of the resource group deployment to create.
+          deploymentName: azure_arc # optional
+          # Supply deployment parameter values.
+          parameters: windowsAdminPassword=${{ secrets.Windows_Admin_Password }} ./azure_jumpstart_arcbox/bicep/main.bicepparam
+          # # Specify whether to fail the action if some data is written to stderr stream of az cli. Valid values are: true, false
+          # failOnStdErr: # optional, default is true
+          # Specify any additional arguments for the deployment.
+          #additionalArguments: --parameters '{"windowsAdminPassword":"value"}'
+          # '--windowsAdminPassword=${{ secrets.WINDOWS_ADMIN_PASSWORD }}' # optional
+          
+          
